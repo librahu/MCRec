@@ -21,15 +21,15 @@ Source code for KDD 2018 paper "Leverage Meta-path based Context for Top-N Recom
  
 > title = {Leverage Meta-path based Context for Top-N Recommendation with a Neural Co-Attention Model},
  
-> booktitle = {Proceedings of the 20th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+> booktitle = {Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
  
 > year = {2018},
  
-> url = {NULL},
+> url = {https://dl.acm.org/citation.cfm?id=3219965},
  
 > publisher = {ACM},
 
-> address = {New York, NY, USA},
+> address = {London, United Kingdom},
 
 > keywords = {Recommender System, Heterogeneous Information Network, Deep Learning, Attention Mechanism},
  
