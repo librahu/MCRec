@@ -1,0 +1,141 @@
+\documentclass[sigconf]{acmart}
+
+%\usepackage{booktabs} % For formal tables
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage[tight,footnotesize]{subfigure}
+
+\newtheorem{myDef}{Definition}
+\newtheorem{exmp}{Example}
+\newcommand{\paratitle}[1]{\vspace{1.5ex}\noindent\textbf{#1}}
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\aka}{\emph{a.k.a.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\wrt}{\emph{w.r.t.}\xspace}
+\newcommand{\ignore}[1]{}
+
+\copyrightyear{2018} 
+\acmYear{2018} 
+\setcopyright{acmcopyright}
+\acmConference[KDD 2018]{24th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining}{August 19--23, 2018}{London, United Kingdom}
+\acmBooktitle{KDD 2018: 24th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining, August 19--23, 2018, London, United Kingdom}
+\acmPrice{15.00}
+\acmDOI{10.1145/3219819.3219965}
+\acmISBN{978-1-4503-5552-0/18/08} 
+\fancyhead{}
+
+\author{Binbin Hu, Chuan Shi*}
+%\authornote{Corresponding author}
+\affiliation{%
+  \institution{Beijing University of Posts and Telecommunications, Beijing, China}
+}
+\email{{hubinbin, shichuan}@bupt.edu.cn}
+
+\author{Wayne Xin Zhao}
+\authornote{Corresponding author}
+\affiliation{%
+  \institution{School of Information, Renmin University of China, Beijing, China}
+}
+\email{batmanfly@gmail.com}
+
+\author{Philip S. Yu}
+\authornote{Philip S. Yu is also with the Institute for Data Science, Tsinghua University, Beijing, China.}
+\affiliation{%
+  \institution{University of Illinois at Chicago}
+  \city{IL}
+  \country{USA}
+}
+\email{psyu@cs.uic.edu}
+
+
+%\author{Binbin Hu}
+%\affiliation{%
+%  \institution{Beijing University of Posts and Telecommunications}
+%  \city{Beijing}
+%  \state{China}
+%}
+%\email{hubinbin@bupt.edu.cn}
+
+%\author{Chuan Shi*}
+%\authornote{Chuan Shi is the Corresponding author}
+%\affiliation{%
+%  \institution{Beijing University of Posts and Telecommunications}
+%  \city{Beijing}
+%  \state{China}
+%}
+%\email{shichuan@bupt.edu.cn}
+
+%\author{Wayne Xin Zhao}
+%\authornote{Corresponding author}
+%\affiliation{%
+%  \institution{School of Information, Renmin University of China}
+%\city{Beijing}
+%\country{China}
+%}
+%\email{batmanfly@gmail.com}
+
+%\author{Philip S. Yu}
+%\authornote{Philip S. Yu is also with the Institute for Data Science, Tsinghua University, Beijing, China.}
+%\affiliation{%
+%  \institution{University of Illinois at Chicago}
+%  \city{IL}
+%  \country{USA}
+%}
+%\email{psyu@cs.uic.edu}
+
+
+\begin{document}
+\title{Leveraging Meta-path based Context for Top-$N$ Recommendation with A Neural Co-Attention Model}
+
+\begin{abstract}
+Heterogeneous information network (HIN) has  been widely adopted in recommender systems due to its excellence in modeling complex context information.  
+Although existing HIN based recommendation methods have achieved performance improvement to some extent, they have two major shortcomings. First, these models seldom learn an explicit representation for path or meta-path in the recommendation task. Second, they do not consider the mutual effect between the meta-path and the involved user-item pair in an interaction. 
+To address these issues, we develop a novel deep neural network with the co-attention mechanism for leveraging rich meta-path based context for top-$N$ recommendation. 
+We elaborately design a three-way neural interaction model by explicitly incorporating meta-path based context.
+ To construct the meta-path based context, we propose to use a priority based sampling technique to select high-quality path instances.
+ Our model is able to learn effective representations for users, items and meta-path based context for implementing a powerful interaction function.
+The co-attention mechanism  improves the representations for  meta-path based context, users and items in a mutual enhancement way. 
+Extensive experiments on three real-world datasets have demonstrated the effectiveness of the proposed model.
+In particular, the proposed model performs well in the cold-start scenario and has potentially good interpretability for the recommendation results.
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10002951.10003227.10003351.10003269</concept_id>
+<concept_desc>Information systems~Collaborative filtering</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010520.10010521.10010542.10010546</concept_id>
+<concept_desc>Computer systems organization~Heterogeneous (hybrid) systems</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Information systems~Collaborative filtering}
+\ccsdesc[500]{Computer systems organization~Heterogeneous (hybrid) systems}
+
+\keywords{Recommender System; Heterogeneous Information Network; Deep Learning; Attention Mechanism}
+
+\maketitle
+
+\input{sec-intro}
+\input{sec-rel}
+\input{sec-def}
+\input{sec-model}
+\input{sec-exp}
+\input{sec-con}
+
+\section{Acknowledgement}
+This work is supported in part by the National Natural Science Foundation of China (No. 61772082, 61502502, 61320106006, 61375058), the National Key Research and Development Program of China (2017YFB0803304), and the Beijing Municipal Natural Science Foundation (4182043, 4162032). This work is also supported in part by NSF through grants IIS-1526499, IIS- 1763325, and CNS-1626432, and NSFC 61672313. 
+%Wayne Xin Zhao is the corresponding author. 
+We also thank the anonymous reviewers for their valuable suggestions for helping improve the quality of this manuscript.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

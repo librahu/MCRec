@@ -1,0 +1,47 @@
+\section{Preliminaries}
+%In this section, we will first clarify the background and some preliminary knowledge of this study, and then present our recommendation problem in detail.
+
+%\subsection{User Implicit Feedback}
+In this paper, we consider the recommendation task targeting for implicit feedback. With $n$ users $\mathcal{U} = \{u_1, ..., u_n\}$ and $m$ items $\mathcal{I} = \{i_1, ..., i_m\}$, we define each entry $r_{u,i}$ in the user implicit feedback matrix $\mathbf{R} \in \mathbb{R}^{n \times m}$ as follows: $r_{u,i}=1$ when $\langle u, i \rangle$ interaction is observed, and $r_{u,i}=0$ otherwise.
+Here the value of 1 in the matrix $\mathbf{R}$ indicates the interaction result between a user and an item, \eg whether a user has watched or rated a movie. %However, the value of 1 in the implicit feedback data does not mean users actually like the items. Actually a user watched a movie because he is interested in the movie but he might probably dislike the movie and give a low rate to the movie. Similarly, the value of 0 does not necessarily mean the users dislike the items, it also can be regarded as potential interactions (users are not aware of the items).
+
+%\subsection{Heterogeneous Information Network}
+We frame our recommendation task in the setting of heterogeneous information network, which can be defined as follows:
+
+%A heterogeneous information network (HIN) is a special kind of information network containing multiple types of objects or multiple types of links,
+\begin{myDef}
+\textbf{Heterogeneous Information Network}~\cite{sun2011pathsim}. A HIN is defined as a directed graph ${\mathcal{G}} = (\mathcal{V}, \mathcal{E})$ with an entity type mapping function $\phi : \mathcal{V} \rightarrow \mathcal{A}$ and a link type mapping function $\varphi : \mathcal{E} \rightarrow \mathcal{R}$. $\mathcal{A}$ and $\mathcal{R}$ denote the sets of predefined entity and link types, where $|\mathcal{A}| + |\mathcal{R}| > 2$.
+\end{myDef}
+
+In HIN,  \textbf{network schema} is proposed to describe the meta structure of a network, which illustrates the object types and their interaction relations.
+\begin{exmp}
+Fig.~\ref{fig-framework-intro}(a) illustrates a HIN example and its corresponding network schema for movie recommender system. We can see that the network consists of multiple types of
+objects (\eg User ($U$), Movie ($M$), Director ($D$)) and their semantic relations (\eg watching relation between users and movies, friend relation among users, and directed by relation between movies and directors).
+\end{exmp}
+
+In HIN, two objects can be connected via different semantic paths, which are defined as meta-paths.
+\begin{myDef}
+\textbf{Meta-path}~\cite{sun2011pathsim}. A meta-path $\rho$ is defined as a path in the form of $\mathcal{A}_1 \xrightarrow{\mathcal{R}_1} \mathcal{A}_2 \xrightarrow{\mathcal{R}_2} \cdots \xrightarrow{\mathcal{R}_l} \mathcal{A}_{l+1}$ (abbreviated as $\mathcal{A}_1\mathcal{A}_2 \cdots \mathcal{A}_{l+1}$), which describes a composite relation $\mathcal{R}_1 \circ \mathcal{R}_2 \circ \cdots \circ \mathcal{R}_l$ between object $\mathcal{A}_1$ and $\mathcal{A}_{l+1}$, where $``\circ"$ denotes the composition operator on relations.
+\end{myDef}
+
+Giving a meta-path $\rho$, there exist multiple specific paths under the meta-path, which is called a \textbf{path instance} denoted by $p$.  As we have illustrated above, the implicit feedback matrix $\mathbf{R}$ indicates the interaction result between a user  and an item. We are particularly interested in the meta-paths that connect a user and an item in HIN, which can reveal semantic context for a user-item interaction.
+
+%, while a pair of $\langle user, item \rangle$ can be indirectly connected via different meta-paths, which reflects different types of interactions between users and items. The aggregated meta-paths constitute the context of a $\langle user, item \rangle$ pair, which can comprehensively reveal the semantic relations of the user and item.
+\begin{myDef}
+\textbf{Meta-path based Context}. Giving a user $u$ and an item $i$, the meta-path based context  is defined as the aggregate set of path instances under the considered meta-paths connecting the two nodes on the HIN.
+\end{myDef}
+
+\begin{exmp}
+Take Fig.~\ref{fig-framework-intro}(a) as an example. The user $u_1$ and movie $m_2$ can be connected via multiple meta-paths, $\eg$ ``$u_1$-$m_1$-$u_3$-$m_2$" ($UMUM$) and  ``$u_1$-$m_1$-$t_1$-$m_2$" ($UMTM$), which constitute the context of the interaction $\langle u_1, m_2 \rangle$. Different meta-paths usually convey different interaction semantics of $\langle u_1, m_2 \rangle$. For example, $UMUM$ and $UMTM$  paths indicate that user $u_1$ has watched  movie $m_2$ since (1) a user $u_2$ sharing the same watching records (\ie $m_1$) has watched $m_2$ and (2) she/he has previously watched movie $m_1$ with the same type of movie $m_2$ respectively.
+These meta-path based contexts reveal varying interaction semantics through aggregating different meth-paths.
+\end{exmp}
+
+%\subsection{Problem Definition}
+%Recently, HIN has widely been used to model various complex interaction systems~\cite{shi2017survey}. Specially, it has been adopted in recommender systems for characterizing complex and heterogenous recommendation settings.
+Given the above preliminaries, we are ready to define our task.
+
+\begin{myDef}
+\textbf{HIN based Top-$N$ Recommendation}. Given a heterogeneous information network $\mathcal{G}$ with user implicit feedback matrix $\mathbf{R}$, for each user $u \in \mathcal{U}$, we aim to recommend a ranked list of items that are of interest to $u$.
+\end{myDef}
+
+Many efforts have been made for HIN based recommendation. While, most of these works focus on the rating prediction task, which predicts the absolute preference score of a user to a new item~\cite{zhao2017meta,shi2015semantic}. Top-$N$ recommendation task is more common in practice, since implicit feedback is easier to obtain.

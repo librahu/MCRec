@@ -1,0 +1,11 @@
+\section{Conclusion}
+
+In this paper, we proposed a novel deep neural network model with the co-attention mechanism for top-$N$ recommendation in HIN. 
+We elaborately designed a three-way neural interaction model by explicitly incorporating meta-path based context.
+ To construct the meta-path based context, we used a priority based sampling technique to select high-quality path instances.
+ Our model learned effective representations for users, items and meta-path based context for implementing a powerful interaction function.
+The co-attention mechanism  mutually improved the representations for  meta-path based context, users and items. 
+Extensive experimental results have demonstrated  the superiority  of our model in both recommendation effectiveness and interpretability. 
+We believe the proposed three-way neural interaction model provides a promising approach to utilize HIN information for improving recommender systems. 
+
+Currently, our approach is able to effectively select high-quality path instances, and  learn the attention weights of meta-paths. While, the selection of meta-paths is completed manually.  As future work, we will consider how to develop a more principled way for automatically selecting meta-paths in HINs. We will also consider adapting our approach to deal with more complicated structure patterns in HIN, \eg meta-graphs. In addition, we also will extend our model to deal with explicit feedback as well as weighted edges.
