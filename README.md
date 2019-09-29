@@ -18,43 +18,66 @@ Source code for KDD 2018 paper "Leverage Meta-path based Context for Top-N Recom
 @inproceedings{
 
 > author = {Binbin Hu, Chuan Shi, Wayne Xin Zhao and Philip S. Yu.},
- 
+
 > title = {Leverage Meta-path based Context for Top-N Recommendation with a Neural Co-Attention Model},
- 
+
 > booktitle = {Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
- 
+
 > year = {2018},
- 
+
 > url = {https://dl.acm.org/citation.cfm?id=3219965},
- 
+
 > publisher = {ACM},
 
 > address = {London, United Kingdom},
 
 > keywords = {Recommender System, Heterogeneous Information Network, Deep Learning, Attention Mechanism},
- 
+
 }
 
 # More Details
+
+**Dataset**
+
+We provide one processed dataset : MovieLens 100k (ml-100k). For each user, we treat the latest interaction as the test set and remaining data for training. Besides, we randomly select 50 movies that are not interacted by the user and rank the test movie amongst the 50 movies.
+
+train.rating:
+
+- Train file.
+- Each Line is a training instance: userID\t itemID\t rating\t timestamp (if have)
+
+test.rating:
+
+- Test file (positive instances).
+- Each Line is a testing instance: userID\t itemID\t rating\t timestamp (if have)
+
+test.negative
+
+- Test file (negative instances).
+- Each line corresponds to the line of test.rating, containing 50 negative samples.
+- Each line is in the format: (userID,itemID)\t negativeItemID1\t negativeItemID2 ...
 
 **Metapath Construction**
 
 The data we utilize is located in [HIN Datasets](https://github.com/librahu/HIN-Datasets-for-Recommendation-and-Network-Embedding/tree/master/Movielens) or you can obtain it by executing the dataProcessing.py.
 
-Run metapath construction : 
-
-The parameter setting is set on line 472-474 of metapathbasedPathSampleForMovielens.py, which construct different meta-paths for the following model training.
-
 ```python
 python dataProcessing.py
-python metapathbasedPathSampleForMovielens.py
+```
+
+Run metapath construction : 
+
+The metapathbasedPathSampleForMovielens.py constructs different meta-paths for the following model training.  
+
+```python
+python metapathbasedPathSampleForMovielens.py --walk_num 5 --metapath umtm
 ```
 
 Here,  
 
 - uafile :  user_age.dat , which extracts from original u.user, 
 
-  		  0~10 : 1;  11 ~20 : 2;  21~30 : 3; 31~40 : 4；41~50 : 5; 51~60 : 6
+  	0~10 : 1;  11 ~20 : 2;  21~30 : 3; 31~40 : 4；41~50 : 5; 51~60 : 6
 
 - uofile :  user_occupation.dat, which is the relation between u.user and u.occupation
 
@@ -71,38 +94,16 @@ Output：
 
 **Example to run the codes.**
 
-The parameter setting is set on line 449-462 of file MCRec, and the dataset for which is Movielens-100K.  Be sure to refer to it while experimenting with different sets.
+The parameter setting is set on line 476-484 of file MCRec, and the dataset for which is Movielens-100K.  Be sure to refer to it while experimenting with different datasets.
 
 Run MCRec:
 
 ```python
-python MCRec.py
+python MCRec.py --dataset ml-100k --epochs 30 --batch_size 256 --learner adam --lr 0.001 --latent_dim 128 --latent_layer_dim [512, 256, 128, 64] --num_neg 4
 ```
 
-**Details**
+**Remarkable** 
 
 - the pretrain embedding will be useful for the model training and meta-path construction
-- the negative sample is necessary for our model training, which is located in the line 388 of MCRec.py
-
-
-
-**Dataset**
-
-We provide one processed dataset : MovieLens 100k (ml-100k)。The dataset split  strategy follow [NeuMF](https://github.com/hexiangnan/neural_collaborative_filtering).
-
-train.rating:
-
-- Train file.
-- Each Line is a training instance: userID\t itemID\t rating\t timestamp (if have)
-
-test.rating:
-
-- Test file (positive instances).
-- Each Line is a testing instance: userID\t itemID\t rating\t timestamp (if have)
-
-test.negative
-
-- Test file (negative instances).
-- Each line corresponds to the line of test.rating, containing 99 negative samples.
-- Each line is in the format: (userID,itemID)\t negativeItemID1\t negativeItemID2 ...
+- the negative sample is necessary for our model training, which is located in the line 413 of MCRec.py
 
