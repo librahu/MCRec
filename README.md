@@ -88,7 +88,7 @@ python MCRec.py
 
 **Dataset**
 
-We provide one processed dataset : MovieLens 100k (ml-100k)。The dataset split  strategy follow [NeuMF][1].
+We provide one processed dataset : MovieLens 100k (ml-100k)。The dataset split  strategy follow [NeuMF](https://github.com/hexiangnan/neural_collaborative_filtering).
 
 train.rating:
 
@@ -106,6 +106,3 @@ test.negative
 - Each line corresponds to the line of test.rating, containing 99 negative samples.
 - Each line is in the format: (userID,itemID)\t negativeItemID1\t negativeItemID2 ...
 
-
-
-[1] (https://github.com/hexiangnan/neural_collaborative_filtering)
