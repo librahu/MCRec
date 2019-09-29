@@ -87,7 +87,7 @@ def evaluate_model(model, user_feature, item_feature, type_feature, num_users, n
         ndcgs = [r[1] for r in res]
         return (hits, ndcgs)
     # Single thread
-    for idx in xrange(len(_testRatings)):
+    for idx in range(len(_testRatings)):
         (p, r, ndcg) = eval_one_rating(idx)
         ps.append(p)
         rs.append(r)
@@ -168,7 +168,7 @@ def eval_one_rating(idx):
     predictions = _model.predict([np.array(user_input), np.array(item_input), umtm_input, umum_input, umtmum_input, uuum_input], 
                                  batch_size = 256, verbose = 0)
     #print atten.shape
-    for i in xrange(len(items)):
+    for i in range(len(items)):
         item = items[i]
         map_item_score[item] = predictions[i]
     #items.pop()
@@ -225,7 +225,7 @@ def getNDCG(ranklist, gtItems):
 
 
 #def getNDCG(ranklist, gtItems):
-#    for i in xrange(len(ranklist)):
+#    for i in range(len(ranklist)):
 #        item = ranklist[i]
 #        if item == gtItems:
 #            return math.log(2) / math.log(i+2)

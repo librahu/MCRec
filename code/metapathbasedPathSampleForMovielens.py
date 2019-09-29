@@ -1,7 +1,8 @@
 import numpy as np
 import random
 import time
-#from time import time
+import argparse
+
 #random.seed(123)
 #ml 100k
 usize = 943 + 1
@@ -10,6 +11,14 @@ tsize = 18 + 1
 #ml 1m
 #usize = 6040 + 1
 #msize = 3706 + 1
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Run MCRec.")
+    parser.add_argument('--walk_num', type=int, default=5,
+                        help='the length of random walk .')
+    parser.add_argument('--metapath', type=str, default="umtm",
+                        help='the metapath for movielens dataset.')
+    return parser.parse_args()
 
 class MetapathBasePathSample:
     def __init__(self, **kargs):
@@ -31,7 +40,7 @@ class MetapathBasePathSample:
         self.user_embedding = np.zeros((usize, 64))
         self.item_embedding = np.zeros((msize, 64))
         self.type_embedding = np.zeros((tsize, 64))
-        print 'Begin to load data'
+        print('Begin to load data')
         start = time.time()
 
         self.load_user_embedding('../data/ml-100k.bpr.user_embedding')
@@ -45,7 +54,7 @@ class MetapathBasePathSample:
         self.load_mm(kargs.get('mmfile'))
         #self.load_uo(kargs.get('uofile'))
         end = time.time()
-        print 'Load data finished, used time %.2fs' % (end - start)
+        print('Load data finished, used time %.2fs' % (end - start))
         self.path_list = list()
         self.outfile = open(kargs.get('outfile_name'), 'w')
         self.metapath_based_randomwalk()
@@ -79,7 +88,7 @@ class MetapathBasePathSample:
         for u in range(1, usize):
             for i in range(1, msize):
                 pair_list.append([u, i])
-        print 'load pairs finished num = ', len(pair_list)
+        print('load pairs finished num = ', len(pair_list))
         ctn = 0
         t1 = time.time()
         avg = 0
@@ -87,7 +96,7 @@ class MetapathBasePathSample:
             ctn += 1
             #print u, m
             if ctn % 10000 == 0:
-                print  '%d [%.4f]\n' % (ctn, time.time() - t1)
+                print('%d [%.4f]\n' % (ctn, time.time() - t1))
             if self.metapath == 'umum':
                 path = self.walk_umum(u, m)
             elif self.metapath == 'umtm':
@@ -101,7 +110,7 @@ class MetapathBasePathSample:
             elif self.metapath == 'ummm':
                 path = self.walk_ummm(u, m)
             else:
-                print 'unknow metapath.'
+                print('unknow metapath.')
                 exit(0)
     
     def get_sim(self, u, v):
@@ -469,10 +478,17 @@ if __name__ == '__main__':
     mtfile = '../data/ml-100k.mt' 
     uufile = '../data/ml-100k.uu_knn_50'
     mmfile = '../data/ml-100k.mm_knn_50'
-    walk_num = 5
+    # walk_num = 5
+    # metapath = 'umtm'
+
+    args = parse_args()
+    walk_num = args.walk_num
+    metapath = args.metapath
     K = 1
-    metapath = 'umtm' 
+
+    # print ("walk_num : ", walk_num, "T : ", type(walk_num))
+    # print ("meta : ", metapath, "T : ", type(metapath))
     outfile_name = '../data/ml-100k_50.' + metapath + '_' + str(walk_num) + '_' + str(K)
-    print 'outfile name = ', outfile_name
+    print('outfile name = ', outfile_name)
     MetapathBasePathSample(uufile = uufile, mmfile = mmfile, umfile = umfile, uafile = uafile, uofile = uofile, mtfile = mtfile,
                            K = K, walk_num = walk_num, metapath = metapath, outfile_name = outfile_name)

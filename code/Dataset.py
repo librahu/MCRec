@@ -164,7 +164,7 @@ class Dataset(object):
         return user_feature, item_feature, type_feature, age_feature, occ_feature
     
     def load_path_as_map(self, filename):
-        print filename
+        print(filename)
         path_dict = {}
         path_num = 0
         timestamps = 0
@@ -182,7 +182,7 @@ class Dataset(object):
                 timestamps = len(arr[2].strip().split('-'))
                 line = infile.readline()
                 ctn += 1
-        print ctn, path_num, timestamps, length
+        print( ctn, path_num, timestamps, length)
         with open(filename) as infile:
             line = infile.readline()
             while line != None and line != "":
@@ -204,6 +204,6 @@ class Dataset(object):
 
 if __name__ == '__main__':
     dataset = Dataset('../data/ml-100k')
-    print dataset.user_feature
-    print dataset.item_feature
-    print dataset.type_feature
+    print( dataset.user_feature)
+    print( dataset.item_feature)
+    print( dataset.type_feature)
