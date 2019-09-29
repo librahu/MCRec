@@ -39,7 +39,7 @@ Source code for KDD 2018 paper "Leverage Meta-path based Context for Top-N Recom
 
 **Metapath Construction**
 
-The data we utilize is located in <https://github.com/librahu/HIN-Datasets-for-Recommendation-and-Network-Embedding/tree/master/Movielens> or you can obtain it by executing the dataProcessing.py.
+The data we utilize is located in [HIN Datasets](https://github.com/librahu/HIN-Datasets-for-Recommendation-and-Network-Embedding/tree/master/Movielens) or you can obtain it by executing the dataProcessing.py.
 
 Run metapath construction : 
 
