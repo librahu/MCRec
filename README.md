@@ -54,7 +54,7 @@ Here,
 
 - uafile :  user_age.dat , which extracts from original u.user, 
 
-  ​			  0~10 : 1;  11 ~20 : 2;  21~30 : 3; 31~40 : 4；41~50 : 5; 51~60 : 6
+  		  0~10 : 1;  11 ~20 : 2;  21~30 : 3; 31~40 : 4；41~50 : 5; 51~60 : 6
 
 - uofile :  user_occupation.dat, which is the relation between u.user and u.occupation
 
@@ -86,7 +86,7 @@ python MCRec.py
 
 
 
-Dataset**
+**Dataset**
 
 We provide one processed dataset : MovieLens 100k (ml-100k)。The dataset split  strategy follow [NeuMF][1].
 
