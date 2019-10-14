@@ -44,18 +44,18 @@ We provide one processed dataset : MovieLens 100k (ml-100k). For each user, we t
 train.rating:
 
 - Train file.
-- Each Line is a training instance: userID\t itemID\t rating\t timestamp (if have)
+- Each Line is a training instance: userID itemID rating timestamp (if have)
 
 test.rating:
 
 - Test file (positive instances).
-- Each Line is a testing instance: userID\t itemID\t rating\t timestamp (if have)
+- Each Line is a testing instance: userID rated_itemID_1 rated_itemID_2 rated_itemID_3...
 
 test.negative
 
 - Test file (negative instances).
 - Each line corresponds to the line of test.rating, containing 50 negative samples.
-- Each line is in the format: (userID,itemID)\t negativeItemID1\t negativeItemID2 ...
+- Each line is in the format: (userID,rated_itemID_1,rated_itemID_2,rated_itemID_3,...)\t negativeItemID1\t negativeItemID2 ...
 
 **Metapath Construction**
 
