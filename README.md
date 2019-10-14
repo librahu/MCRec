@@ -55,7 +55,7 @@ test.negative
 
 - Test file (negative instances).
 - Each line corresponds to the line of test.rating, containing 50 negative samples.
-- Each line is in the format: (userID,rated_itemID_1,rated_itemID_2,rated_itemID_3,...)\t negativeItemID1\t negativeItemID2 ...
+- Each line is in the format: (userID,rated_itemID_1,rated_itemID_2,rated_itemID_3,...) negativeItemID1 negativeItemID2 ...
 
 **Metapath Construction**
 
